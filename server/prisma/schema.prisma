@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id             Int      @id @default(autoincrement())
+  name           String   @db.VarChar(250)
+  closeAt        String
+  openAt         String   @default("09:00")
+  isOpen         Boolean  @default(false)
+  account        Float    @default(0)
+  reportFileName String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
+}
